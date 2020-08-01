@@ -9,6 +9,7 @@ import tk.ethandelany.helpers.CommandHelper;
 import tk.ethandelany.helpers.ConfigHelper;
 import tk.ethandelany.helpers.SQLHelper;
 
+import javax.naming.ConfigurationException;
 import javax.security.auth.login.LoginException;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,7 @@ public class Bot {
             GatewayIntent.DIRECT_MESSAGE_TYPING
     );
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LoginException, ConfigurationException {
 
         ConfigHelper.setupConfig();
         try {
@@ -38,7 +39,7 @@ public class Bot {
                     .addEventListeners(new CommandHelper())
                     .build();
         } catch (LoginException e) {
-            logger.error("Failed to login! Check the validity of your bot token.");
+            throw new LoginException("Failed to login. Ensure your bot token is correct in config.yml!");
         }
         SQLHelper.setupSQL();
     }
