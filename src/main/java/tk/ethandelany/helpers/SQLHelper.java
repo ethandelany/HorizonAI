@@ -2,10 +2,9 @@ package tk.ethandelany.helpers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tk.ethandelany.tables.counters;
+import tk.ethandelany.tables.DISUSER;
 
 import java.sql.*;
-import java.util.Arrays;
 
 public class SQLHelper {
     private static final Logger logger = LoggerFactory.getLogger("GLOBAL");
@@ -34,7 +33,7 @@ public class SQLHelper {
             stmt.executeUpdate("USE discord;");
             logger.info("Database configured successfully!");
 
-            counters.setupTable();
+            DISUSER.setupTable();
 
         } catch (SQLException | ClassNotFoundException e) {
             logger.error("SQL Setup failed!", e);
